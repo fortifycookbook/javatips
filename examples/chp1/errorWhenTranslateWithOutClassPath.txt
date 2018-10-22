@@ -1,0 +1,4 @@
+[warning]: Assuming Java source level to be 1.8 as it was not specified. Note that the default value may change in future versions.
+[error]: Unable to resolve symbol 'mylib' at (/Users/zacharylewis/Desktop/devopsdemo1/javatips/examples/chp1/simplejava/program.java:8:31)
+[warning]: The following references to Java functions could not be resolved. These functions may be part of classes that could not be found, or there may be a type error at the call site of the given function relative to the function declaration. Please ensure the Java source code can be compiled by a Java compiler. 
+	getPrivateData
