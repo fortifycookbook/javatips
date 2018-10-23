@@ -1,0 +1,236 @@
+++ pwd
++ MYDEMOHOME=/Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips
++ echo 'Chapter #1'
+Chapter #1
++ echo -------------------------
+-------------------------
++ echo 'Command Line Example'
+Command Line Example
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ cd examples/chp1
++ ./translateWithOutClassPathError.sh
++ sourceanalyzer -b simplejava -clean
++ sourceanalyzer -b simplejava simplejava
+[error]: Unable to resolve symbol 'mylib' at (/Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp1/simplejava/program.java:8:31)
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ echo 'NOTE: Java code that has dependency jars must include the classpath to all java jar files '
+NOTE: Java code that has dependency jars must include the classpath to all java jar files 
++ echo 'NOTE: The next example adds the -cp classpath argument to point to the jars.'
+NOTE: The next example adds the -cp classpath argument to point to the jars.
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ ./translateWithClassPath.sh
++ sourceanalyzer -b simplejava -clean
++ sourceanalyzer -b simplejava simplejava -cp mylib.jar
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ echo 'NOTE: Java code no error this time'
+NOTE: Java code no error this time
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ cd /Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips
++ echo 'Chapter #2 - MAVEN'
+Chapter #2 - MAVEN
++ echo -------------------------
+-------------------------
++ echo 'Maven Example'
+Maven Example
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ cd examples/chp2/mavendemo
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ ./translateMavenWithOutJarsCmdLine.sh
++ mvn clean
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< com.github.fortifycookbook:mavendemo >----------------
+[INFO] Building mavendemo 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ mavendemo ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 0.369 s
+[INFO] Finished at: 2018-10-23T16:42:13-05:00
+[INFO] ------------------------------------------------------------------------
++ sourceanalyzer -b mavenDemoWithOutJars -clean
+++ pwd
++ sourceanalyzer -b mavenDemoWithJars /Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp2/mavendemo/src
+[error]: Unable to resolve symbol 'Security' at (/Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp2/mavendemo/src/main/java/com/github/fortifycookbook/program.java:8:25)
++ sourceanalyzer -b mavenDemoWithJars -show-files
+main/java/com/github/fortifycookbook/program.java
+test/java/com/github/fortifycookbook/AppTest.java
++ echo 'NOTE: Java code that has dependency jars must include the classpath to all java jar files '
+NOTE: Java code that has dependency jars must include the classpath to all java jar files 
++ echo 'NOTE: The next example adds uses the mvn get depenency option to copy jars and then sets the classpath'
+NOTE: The next example adds uses the mvn get depenency option to copy jars and then sets the classpath
++ echo -------------------------
+-------------------------
++ echo ' '
+ 
++ ./translateMavenWithJarsCmdLine.sh
++ mvn clean
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< com.github.fortifycookbook:mavendemo >----------------
+[INFO] Building mavendemo 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ mavendemo ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 0.550 s
+[INFO] Finished at: 2018-10-23T16:42:25-05:00
+[INFO] ------------------------------------------------------------------------
+++ pwd
++ mvn dependency:copy-dependencies -DoutputDirectory=/Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp2/mavendemo/tmpjars
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< com.github.fortifycookbook:mavendemo >----------------
+[INFO] Building mavendemo 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:copy-dependencies (default-cli) @ mavendemo ---
+[INFO] junit-3.8.1.jar already exists in destination.
+[INFO] mylib-1.0-SNAPSHOT.jar already exists in destination.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.382 s
+[INFO] Finished at: 2018-10-23T16:42:29-05:00
+[INFO] ------------------------------------------------------------------------
++ sourceanalyzer -b mavenDemoWithJars -clean
+++ pwd
+++ pwd
++ sourceanalyzer -b mavenDemoWithJars -extdirs /Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp2/mavendemo/tmpjars /Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp2/mavendemo/src
++ sourceanalyzer -b mavenDemoWithJars -show-files
+main/java/com/github/fortifycookbook/program.java
+test/java/com/github/fortifycookbook/AppTest.java
++ cd /Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips
++ echo 'Chapter #3 GRADLE'
+Chapter #3 GRADLE
++ echo -------------------------
+-------------------------
++ echo 'Gradle Example'
+Gradle Example
++ echo -------------------------
+-------------------------
++ cd examples/chp3/gradle1
++ ./translateGradleMissingJars.sh
++ sourceanalyzer -b g1 -verbose gradle clean build
+Fortify Static Code Analyzer 18.20.1071 (using JRE 1.8.0_181)
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0
+starting init script
+TaskListener registered.
+> Task :clean
+Fortify Static Code Analyzer 18.20.1071 (using JRE 1.8.0_181)
+[warning]: Classpath entry "/Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp3/gradle1/libs/mylib.jar doesn't exist
+[warning]: Classpath entry /Users/zacharylewis/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.14/775b7e22fb10026eed3f86e8dc556dfafe35f2d5/animal-sniffer-annotations-1.14.jar" doesn't exist
+[warning]: Assuming Java source level to be 1.8 as it was not specified. Note that the default value may change in future versions.
+Processing /Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp3/gradle1/src/main/java/demo/program.java
+[error]: Unable to resolve symbol 'Security' at (/Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp3/gradle1/src/main/java/demo/program.java:10:25)
+[warning]: The following references to Java functions could not be resolved. These functions may be part of classes that could not be found, or there may be a type error at the call site of the given function relative to the function declaration. Please ensure the Java source code can be compiled by a Java compiler. 
+	getPrivateData
+
+> Task :compileJava
+> Task :processResources NO-SOURCE
+> Task :classes
+> Task :jar
+> Task :startScripts
+> Task :distTar
+> Task :distZip
+> Task :assemble
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :check UP-TO-DATE
+> Task :build
+
+BUILD SUCCESSFUL in 6s
+6 actionable tasks: 6 executed
++ echo 'NOTE: Java code that has dependency jars must include the classpath to all java jar files '
+NOTE: Java code that has dependency jars must include the classpath to all java jar files 
++ echo 'NOTE: Gradle has a bug on that does not pickup jar directories.'
+NOTE: Gradle has a bug on that does not pickup jar directories.
++ echo 'NOTE: The next example shows a workaround for the gradle issue by adding a copy Jars tasks'
+NOTE: The next example shows a workaround for the gradle issue by adding a copy Jars tasks
++ echo -------------------------
+-------------------------
++ ./translateGradleWithCopyJars.sh
++ cp build.gradle gradle.build.orig
++ cp build.gradle.copyJars build.gradle
++ more build.gradle
+/*
+ * This file was generated by the Gradle 'init' task.
+ *
+ * This generated file contains a sample Java project to get you started.
+ * For more details take a look at the Java Quickstart chapter in the Gradle
+ * user guide available at https://docs.gradle.org/4.10.2/userguide/tutorial_java_projects.html
+ */
+ 
+
+
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the application plugin to add support for building an application
+    id 'application'
+}
+
+// Define the main class for the application
+mainClassName = 'program'
+
+dependencies {
+
+    // This dependency is found on compile classpath of this component and consumers.
+    compile 'com.google.guava:guava:23.0'
+    compile files('libs/mylib.jar')
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+
+task ScaCopyDependencies(type: Copy) {
+  from configurations.default
+  into 'scadependencies'
+}
++ gradle ScaCopyDependencies
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0
+> Task :ScaCopyDependencies UP-TO-DATE
+
+BUILD SUCCESSFUL in 0s
+1 actionable task: 1 up-to-date
++ sourceanalyzer -b g1 -clean
+++ pwd
++ sourceanalyzer -b g1 -extdirs /Users/zacharylewis/Desktop/devopsdemo1/tmp2/javatips/examples/chp3/gradle1/scadependencies src
++ cp gradle.build.orig build.gradle
