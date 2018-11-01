@@ -1,0 +1,18 @@
+Rendering 2 results/)       94% [=================== ]
+Analysis completed in 01:03 98% [====================]
+
+
+C:\Users\zaclewis\Desktop\cookbookcode>
+
+
+sourceanalyzer -b nodejs -verbose -logfile nodejsdemoscan.txt -scan -f nodejs.fpr -rules custom-rule.xml -Dcom.fortify.sca.Phase0HigherOrder.Languages=javascript,typescript -Dcom.fortify.sca.EnableDOMModeling=true -Dcom.fortify.sca.hoa.Enable=true
+
+
+
+Fortify Static Code Analyzer 18.20.1071 (using JRE 1.8.0_181)
+Analyzing 1 source file(s)
+Configuration analysis complete [===============     ]
+Rendering 269 results       95% [=================== ]
+Unable to find named description element 'desc.dataflow.java.privacy_violation'.  Parsing of description failed.
+Analysis completed in 01:31 99% [====================]
+
