@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <copy file="../xcodebuild/target/nar/xcodebuild-18.20-x86_64-MacOSX-gpp-executable/bin/x86_64-MacOSX-gpp/xcodebuild" todir="/Users/zacharylewis/Desktop/devopsdemo1/githupdemosrc/javatips/examples/chp2/mavendemo/SCA1820MavenPlugin/maven-plugin-src/sca-maven-plugin/src/main/resources/bin" force="true"/>
+  <chmod perm="ugo+x">
+    <fileset dir="/Users/zacharylewis/Desktop/devopsdemo1/githupdemosrc/javatips/examples/chp2/mavendemo/SCA1820MavenPlugin/maven-plugin-src/sca-maven-plugin/src/main/resources/bin"/>
+  </chmod>
+</target>
+</project>

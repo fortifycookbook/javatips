@@ -1,0 +1,1 @@
+"-version" "-b" "mvn1" "-logfile" "/Users/zacharylewis/Desktop/devopsdemo1/githupdemosrc/javatips/examples/chp2/mavendemo/target/fortify/sca-translate.log" "-java-build-dir" "/Users/zacharylewis/Desktop/devopsdemo1/githupdemosrc/javatips/examples/chp2/mavendemo/target/classes" "/Users/zacharylewis/Desktop/devopsdemo1/githupdemosrc/javatips/examples/chp2/mavendemo/pom.xml"

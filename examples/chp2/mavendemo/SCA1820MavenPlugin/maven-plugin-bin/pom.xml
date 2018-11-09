@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.fortify.sca.plugins.maven</groupId>
+	<artifactId>sca-maven-plugin-master</artifactId>
+	<packaging>pom</packaging>
+	<version>18.20</version>
+	<name>Fortify SCA Maven Plugin: project master</name>
+	<organization>
+		<url>https://software.microfocus.com/software/enterprise-security</url>
+		<name>Fortify</name>
+	</organization>
+	<prerequisites>
+		<maven>3.0.5</maven>
+	</prerequisites>
+	<developers>
+	</developers>
+	<profiles>
+		<profile>
+			<id>xcodebuild</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<os>
+					<name>Mac OS X</name>
+					<arch>x86_64</arch>
+				</os>
+			</activation>
+			<modules>
+				<module>xcodebuild</module>
+			</modules>
+		</profile>
+	</profiles>
+	<modules>
+		<module>sca-maven-plugin</module>
+	</modules>
+</project>

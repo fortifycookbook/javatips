@@ -1,0 +1,4 @@
+[2018-11-08 12:28:49.874 WARN  12003]
+Assuming Java source level to be 1.8 as it was not specified. Note that the default value may change in future versions.
+[2018-11-08 12:28:49.882 INFO  1450]
+Processing /Users/zacharylewis/Desktop/devopsdemo1/githupdemosrc/javatips/examples/chp2/mavendemo/src/main/java/com/github/fortifycookbook/program.java

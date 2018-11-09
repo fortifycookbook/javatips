@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>sca:startCloudscan</title>
+  </properties>
+  <body>
+    <section name="sca:startCloudscan">
+      <p><strong>Full name</strong>:</p>
+      <p>com.fortify.sca.plugins.maven:sca-maven-plugin:18.20:startCloudscan</p>
+      <p><strong>Description</strong>:</p>
+      <div>Performs the Cloudscan for ther specified build ID or mobile build
+session.</div>
+      <p><strong>Attributes</strong>:</p>
+      <ul>
+        <li>Requires a Maven project to be executed.</li>
+        <li>Binds by default to the <a href="http://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>integration-test</code>.</li>
+      </ul>
+      <subsection name="Required Parameters">
+        <table border="0">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Since</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><strong><a href="#fortifyclient">fortifyclient</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the location of the fortifyclient executable. Defaults to
+fortifyclient that runs the version on the PATH. Upload fails if
+none exists.<br/><strong>Default value is</strong>: <code>fortifyclient</code>.<br/><strong>User property is</strong>: <code>fortify.fortifyclient.executable</code>.</td>
+          </tr>
+        </table>
+      </subsection>
+      <subsection name="Optional Parameters">
+        <table border="0">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Since</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><strong><a href="#aggregate">aggregate</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>16.10</code></td>
+            <td>If set to true, aggregate mode is enabled.<br/><strong>Default value is</strong>: <code>true</code>.<br/><strong>User property is</strong>: <code>fortify.sca.aggregate</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildId">buildId</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the SCA build ID. The default is project artifact ID and
+version. In aggregate mode, the top level project artifact ID and
+version is used for all modules.<br/><strong>Default value is</strong>: <code>${project.artifactId}-${project.version}</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.buildId</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildLabel">buildLabel</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Build Label inserted in to generated FPR.<br/><strong>Default value is</strong>: <code>${project.artifactId}-${project.version}</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.buildLabel</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildProject">buildProject</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Build Project Name inserted in to generated FPR.<br/><strong>Default value is</strong>: <code>${project.artifactId}</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.buildProject</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildSessionFile">buildSessionFile</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Location and name of the existing mobile build session to be
+uploaded to the CloudScan controller.<br/><strong>User property is</strong>: <code>fortify.cloudScan.buildSessionFile</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildSessionProjectRoot">buildSessionProjectRoot</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies project directory for the mobile build session export.<br/><strong>User property is</strong>: <code>fortify.cloudScan.buildSessionProjectRoot</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildVersion">buildVersion</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Build Version inserted in to generated FPR.<br/><strong>Default value is</strong>: <code>${project.version}</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.buildVersion</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#cloudCtrlUrl">cloudCtrlUrl</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the URL of the CloudScan controller.<br/><strong>User property is</strong>: <code>fortify.cloudScan.cloudCtrl.url</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#cloudscan">cloudscan</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Location of the CloudScan client executable. Defaults to cloudscan
+which runs the version on the PATH or fails if none exists.<br/><strong>Default value is</strong>: <code>cloudscan</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.executable</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#cloudscanFailOnError">cloudscanFailOnError</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, the build fails if errors occur during any
+CloudScan processing.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.failOnError</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#cloudscanStartFailOnError">cloudscanStartFailOnError</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, the build fails if errors occur during the
+CloudScan start.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.start.failOnError</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#debug">debug</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, SCA runs in debug mode. This can be useful for
+troubleshooting.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.debug</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#dontRunSCA">dontRunSCA</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, generates SCA commands to run, but does not
+actually run them.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.sca.dontRunSCA</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#emailAddress">emailAddress</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies an email address for job status notification.<br/><strong>User property is</strong>: <code>fortify.cloudScan.email</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#enableBlock">enableBlock</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, CloudScan client waits for job to complete and
+download the results.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.enableBlock</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#filter">filter</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the location and name of the filter file to use during
+the scan (repeatable).<br/><strong>User property is</strong>: <code>fortify.cloudScan.filter</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#fortifyWorkingDirectory">fortifyWorkingDirectory</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>18.20</code></td>
+            <td>Specifies the Fortify working directory. Associated with
+com.fortify.WorkingDirectory property<br/><strong>User property is</strong>: <code>fortify.WorkingDirectory</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#issueTemplate">issueTemplate</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies Issue Template to be applied to the CloudScan.<br/><strong>User property is</strong>: <code>fortify.cloudScan.issueTemplate</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#logFile">logFile</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the location and name of the log file produced by the
+CloudScan client.<br/><strong>Default value is</strong>: <code>cloudscan-start.log</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.startLogfile</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#maxHeap">maxHeap</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the maximum heap size of the JVM that runs SCA.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.Xmx</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#numOfWorkerThreads">numOfWorkerThreads</a></strong></td>
+            <td><code>Integer</code></td>
+            <td><code>-</code></td>
+            <td>Specify the number of worker threads for parallel analysis.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.numOfWorkerThreads</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#overwrite">overwrite</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, the existing FPR or log file might be overwritten
+with new data.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.overwrite</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#quickScan">quickScan</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, scans the project in Quick Scan Mode (uses the
+fortifysca-quickscan.properties file). By default, this scan only
+searches for high-confidence, high-severity issues.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.quickScan</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#quiet">quiet</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set true, SCA writes minimal message to the console.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.quiet</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#renderSources">renderSources</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, source files are included in the FPR file.<br/><strong>Default value is</strong>: <code>true</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.renderSources</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#resultsFile">resultsFile</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the location and name of the FPR file to retrieve.<br/><strong>User property is</strong>: <code>fortify.cloudScan.resultsFile</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#rules">rules</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the custom rule file/directory to use.<br/><strong>User property is</strong>: <code>fortify.cloudScan.rules</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscApplicationName">sscApplicationName</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the SSC application name. Note that this must be supplied
+in conjunction with sscApplicationVersion.<br/><strong>User property is</strong>: <code>fortify.ssc.applicationName</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscApplicationVersion">sscApplicationVersion</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the SSC application version. Note that this must be
+supplied in conjunction with sscApplicationName.<br/><strong>User property is</strong>: <code>fortify.ssc.applicationVersion</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscApplicationVersionId">sscApplicationVersionId</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the Application Version ID of the SSC application. Note
+that sscApplicationVersionId overrides sscApplicationName and
+sscApplicationVersion combinations if supplied.<br/><strong>User property is</strong>: <code>fortify.ssc.applicationVersionId</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscCloudCtrlToken">sscCloudCtrlToken</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the SSC CloudCtrlToken to use when attempting to interact
+with the CloudScan controller. To enable SSC Integrated Mode,
+uploadToSSC must be true.<br/><strong>User property is</strong>: <code>fortify.cloudScan.ssc.cloudCtrlToken</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscProjectName">sscProjectName</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td><strong>Deprecated.</strong> Use sscApplicationName instead<br/><strong>User property is</strong>: <code>fortify.ssc.projectName</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscProjectVersion">sscProjectVersion</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td><strong>Deprecated.</strong> Use sscApplicationVersion instead<br/><strong>User property is</strong>: <code>fortify.ssc.projectVersion</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscProjectVersionId">sscProjectVersionId</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td><strong>Deprecated.</strong> Use sscApplicationVersionId instead<br/><strong>User property is</strong>: <code>fortify.ssc.projectVersionId</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscUploadToken">sscUploadToken</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>AnalysisUploadToken to use when attempting to upload fpr files to
+SSC.<br/><strong>User property is</strong>: <code>fortify.cloudScan.ssc.uploadToken</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#sscUrl">sscUrl</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the SSC URL to interact with CloudScan controller. To
+enable SSC Integrated Mode, uploadToSSC must be true. If sscUrl is
+specified, sscCloudCtrlToken must also be specified.<br/><strong>User property is</strong>: <code>fortify.cloudScan.ssc.url</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#stackSize">stackSize</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the thread stack size of JVM that runs SCA.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.Xss</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#uploadToSSC">uploadToSSC</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, the CloudScan controller uploads the analysis
+results to SSC. Note that this must be supplied in conjunction with
+sscApplicationVersionId, or sscApplicationName and
+sscApplicationVersion combinations.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.uploadToSSC</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#verbose">verbose</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>IIf set to true, SCA sends verbose status messages to the console.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.verbose</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#version">version</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, SCA prints the version to the console.<br/><strong>Default value is</strong>: <code>true</code>.<br/><strong>User property is</strong>: <code>fortify.cloudScan.sca.version</code>.</td>
+          </tr>
+        </table>
+      </subsection>
+      <subsection name="Parameter Details">
+        <p><strong><a name="aggregate">aggregate</a>:</strong></p>
+        <div>If set to true, aggregate mode is enabled.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Since</strong>: <code>16.10</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.aggregate</code></li>
+          <li><strong>Default</strong>: <code>true</code></li>
+        </ul><hr/><p><strong><a name="buildId">buildId</a>:</strong></p>
+        <div>Specifies the SCA build ID. The default is project artifact ID and
+version. In aggregate mode, the top level project artifact ID and
+version is used for all modules.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.buildId</code></li>
+          <li><strong>Default</strong>: <code>${project.artifactId}-${project.version}</code></li>
+        </ul><hr/><p><strong><a name="buildLabel">buildLabel</a>:</strong></p>
+        <div>Build Label inserted in to generated FPR.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.buildLabel</code></li>
+          <li><strong>Default</strong>: <code>${project.artifactId}-${project.version}</code></li>
+        </ul><hr/><p><strong><a name="buildProject">buildProject</a>:</strong></p>
+        <div>Build Project Name inserted in to generated FPR.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.buildProject</code></li>
+          <li><strong>Default</strong>: <code>${project.artifactId}</code></li>
+        </ul><hr/><p><strong><a name="buildSessionFile">buildSessionFile</a>:</strong></p>
+        <div>Location and name of the existing mobile build session to be
+uploaded to the CloudScan controller.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.buildSessionFile</code></li>
+        </ul><hr/><p><strong><a name="buildSessionProjectRoot">buildSessionProjectRoot</a>:</strong></p>
+        <div>Specifies project directory for the mobile build session export.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.buildSessionProjectRoot</code></li>
+        </ul><hr/><p><strong><a name="buildVersion">buildVersion</a>:</strong></p>
+        <div>Build Version inserted in to generated FPR.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.buildVersion</code></li>
+          <li><strong>Default</strong>: <code>${project.version}</code></li>
+        </ul><hr/><p><strong><a name="cloudCtrlUrl">cloudCtrlUrl</a>:</strong></p>
+        <div>Specifies the URL of the CloudScan controller.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.cloudCtrl.url</code></li>
+        </ul><hr/><p><strong><a name="cloudscan">cloudscan</a>:</strong></p>
+        <div>Location of the CloudScan client executable. Defaults to cloudscan
+which runs the version on the PATH or fails if none exists.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.executable</code></li>
+          <li><strong>Default</strong>: <code>cloudscan</code></li>
+        </ul><hr/><p><strong><a name="cloudscanFailOnError">cloudscanFailOnError</a>:</strong></p>
+        <div>If set to true, the build fails if errors occur during any
+CloudScan processing.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.failOnError</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="cloudscanStartFailOnError">cloudscanStartFailOnError</a>:</strong></p>
+        <div>If set to true, the build fails if errors occur during the
+CloudScan start.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.start.failOnError</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="debug">debug</a>:</strong></p>
+        <div>If set to true, SCA runs in debug mode. This can be useful for
+troubleshooting.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.debug</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="dontRunSCA">dontRunSCA</a>:</strong></p>
+        <div>If set to true, generates SCA commands to run, but does not
+actually run them.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.dontRunSCA</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="emailAddress">emailAddress</a>:</strong></p>
+        <div>Specifies an email address for job status notification.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.email</code></li>
+        </ul><hr/><p><strong><a name="enableBlock">enableBlock</a>:</strong></p>
+        <div>If set to true, CloudScan client waits for job to complete and
+download the results.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.enableBlock</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="filter">filter</a>:</strong></p>
+        <div>Specifies the location and name of the filter file to use during
+the scan (repeatable).</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.filter</code></li>
+        </ul><hr/><p><strong><a name="fortifyWorkingDirectory">fortifyWorkingDirectory</a>:</strong></p>
+        <div>Specifies the Fortify working directory. Associated with
+com.fortify.WorkingDirectory property</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Since</strong>: <code>18.20</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.WorkingDirectory</code></li>
+        </ul><hr/><p><strong><a name="fortifyclient">fortifyclient</a>:</strong></p>
+        <div>Specifies the location of the fortifyclient executable. Defaults to
+fortifyclient that runs the version on the PATH. Upload fails if
+none exists.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>Yes</code></li>
+          <li><strong>User Property</strong>: <code>fortify.fortifyclient.executable</code></li>
+          <li><strong>Default</strong>: <code>fortifyclient</code></li>
+        </ul><hr/><p><strong><a name="issueTemplate">issueTemplate</a>:</strong></p>
+        <div>Specifies Issue Template to be applied to the CloudScan.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.issueTemplate</code></li>
+        </ul><hr/><p><strong><a name="logFile">logFile</a>:</strong></p>
+        <div>Specifies the location and name of the log file produced by the
+CloudScan client.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.startLogfile</code></li>
+          <li><strong>Default</strong>: <code>cloudscan-start.log</code></li>
+        </ul><hr/><p><strong><a name="maxHeap">maxHeap</a>:</strong></p>
+        <div>Specifies the maximum heap size of the JVM that runs SCA.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.Xmx</code></li>
+        </ul><hr/><p><strong><a name="numOfWorkerThreads">numOfWorkerThreads</a>:</strong></p>
+        <div>Specify the number of worker threads for parallel analysis.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.Integer</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.numOfWorkerThreads</code></li>
+        </ul><hr/><p><strong><a name="overwrite">overwrite</a>:</strong></p>
+        <div>If set to true, the existing FPR or log file might be overwritten
+with new data.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.overwrite</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="quickScan">quickScan</a>:</strong></p>
+        <div>If set to true, scans the project in Quick Scan Mode (uses the
+fortifysca-quickscan.properties file). By default, this scan only
+searches for high-confidence, high-severity issues.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.quickScan</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="quiet">quiet</a>:</strong></p>
+        <div>If set true, SCA writes minimal message to the console.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.quiet</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="renderSources">renderSources</a>:</strong></p>
+        <div>If set to true, source files are included in the FPR file.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.renderSources</code></li>
+          <li><strong>Default</strong>: <code>true</code></li>
+        </ul><hr/><p><strong><a name="resultsFile">resultsFile</a>:</strong></p>
+        <div>Specifies the location and name of the FPR file to retrieve.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.resultsFile</code></li>
+        </ul><hr/><p><strong><a name="rules">rules</a>:</strong></p>
+        <div>Specifies the custom rule file/directory to use.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.rules</code></li>
+        </ul><hr/><p><strong><a name="sscApplicationName">sscApplicationName</a>:</strong></p>
+        <div>Specifies the SSC application name. Note that this must be supplied
+in conjunction with sscApplicationVersion.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.ssc.applicationName</code></li>
+        </ul><hr/><p><strong><a name="sscApplicationVersion">sscApplicationVersion</a>:</strong></p>
+        <div>Specifies the SSC application version. Note that this must be
+supplied in conjunction with sscApplicationName.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.ssc.applicationVersion</code></li>
+        </ul><hr/><p><strong><a name="sscApplicationVersionId">sscApplicationVersionId</a>:</strong></p>
+        <div>Specifies the Application Version ID of the SSC application. Note
+that sscApplicationVersionId overrides sscApplicationName and
+sscApplicationVersion combinations if supplied.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.ssc.applicationVersionId</code></li>
+        </ul><hr/><p><strong><a name="sscCloudCtrlToken">sscCloudCtrlToken</a>:</strong></p>
+        <div>Specifies the SSC CloudCtrlToken to use when attempting to interact
+with the CloudScan controller. To enable SSC Integrated Mode,
+uploadToSSC must be true.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.ssc.cloudCtrlToken</code></li>
+        </ul><hr/><p><strong><a name="sscProjectName">sscProjectName</a>:</strong></p>
+        <div><strong>Deprecated.</strong> Use sscApplicationName instead</div>
+        <div>Specifies the SSC project name. Note that this must be supplied in
+conjunction with sscProjectVersion.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.ssc.projectName</code></li>
+        </ul><hr/><p><strong><a name="sscProjectVersion">sscProjectVersion</a>:</strong></p>
+        <div><strong>Deprecated.</strong> Use sscApplicationVersion instead</div>
+        <div>Specifies the SSC project version. Note that this must be supplied
+in conjunction with sscProjectName.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.ssc.projectVersion</code></li>
+        </ul><hr/><p><strong><a name="sscProjectVersionId">sscProjectVersionId</a>:</strong></p>
+        <div><strong>Deprecated.</strong> Use sscApplicationVersionId instead</div>
+        <div>Specifies the Project Version ID of the SSC project. Note that
+sscProjectVersionId overrides sscProjectName and sscProjectVersion
+combinations if supplied.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.ssc.projectVersionId</code></li>
+        </ul><hr/><p><strong><a name="sscUploadToken">sscUploadToken</a>:</strong></p>
+        <div>AnalysisUploadToken to use when attempting to upload fpr files to
+SSC.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.ssc.uploadToken</code></li>
+        </ul><hr/><p><strong><a name="sscUrl">sscUrl</a>:</strong></p>
+        <div>Specifies the SSC URL to interact with CloudScan controller. To
+enable SSC Integrated Mode, uploadToSSC must be true. If sscUrl is
+specified, sscCloudCtrlToken must also be specified.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.ssc.url</code></li>
+        </ul><hr/><p><strong><a name="stackSize">stackSize</a>:</strong></p>
+        <div>Specifies the thread stack size of JVM that runs SCA.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.Xss</code></li>
+        </ul><hr/><p><strong><a name="uploadToSSC">uploadToSSC</a>:</strong></p>
+        <div>If set to true, the CloudScan controller uploads the analysis
+results to SSC. Note that this must be supplied in conjunction with
+sscApplicationVersionId, or sscApplicationName and
+sscApplicationVersion combinations.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.uploadToSSC</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="verbose">verbose</a>:</strong></p>
+        <div>IIf set to true, SCA sends verbose status messages to the console.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.verbose</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="version">version</a>:</strong></p>
+        <div>If set to true, SCA prints the version to the console.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.cloudScan.sca.version</code></li>
+          <li><strong>Default</strong>: <code>true</code></li>
+        </ul>
+      </subsection>
+    </section>
+  </body>
+</document>

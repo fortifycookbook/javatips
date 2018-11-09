@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <properties>
+    <title>sca:exportBuildSession</title>
+  </properties>
+  <body>
+    <section name="sca:exportBuildSession">
+      <p><strong>Full name</strong>:</p>
+      <p>com.fortify.sca.plugins.maven:sca-maven-plugin:18.20:exportBuildSession</p>
+      <p><strong>Description</strong>:</p>
+      <div>Exports a mobile build session for the specified build ID.</div>
+      <p><strong>Attributes</strong>:</p>
+      <ul>
+        <li>Requires a Maven project to be executed.</li>
+        <li>Binds by default to the <a href="http://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>pre-integration-test</code>.</li>
+      </ul>
+      <subsection name="Required Parameters">
+        <table border="0">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Since</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><strong><a href="#sourceanalyzer">sourceanalyzer</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Location of the sourceanalyzer executable. Defaults to
+sourceanalyzer which runs the version on the PATH or fails if none
+exists.<br/><strong>Default value is</strong>: <code>sourceanalyzer</code>.<br/><strong>User property is</strong>: <code>fortify.sca.sourceanalyzer.executable</code>.</td>
+          </tr>
+        </table>
+      </subsection>
+      <subsection name="Optional Parameters">
+        <table border="0">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Since</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><strong><a href="#aggregate">aggregate</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>16.10</code></td>
+            <td>If set to true, aggregate mode is enabled.<br/><strong>Default value is</strong>: <code>true</code>.<br/><strong>User property is</strong>: <code>fortify.sca.aggregate</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildId">buildId</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the SCA build ID. The default is project artifact ID and
+version. In aggregate mode, the top level project artifact ID and
+version is used for all modules.<br/><strong>Default value is</strong>: <code>${project.artifactId}-${project.version}</code>.<br/><strong>User property is</strong>: <code>fortify.sca.buildId</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#buildSessionFile">buildSessionFile</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Location and name of the generated build session file.<br/><strong>User property is</strong>: <code>fortify.sca.buildSessionFile</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#debug">debug</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, SCA runs in debug mode. This can be useful for
+troubleshooting.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.sca.debug</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#dontRunSCA">dontRunSCA</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, generates SCA commands to run, but does not
+actually run them.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.sca.dontRunSCA</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#fortifyWorkingDirectory">fortifyWorkingDirectory</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>18.20</code></td>
+            <td>Specifies the Fortify working directory. Associated with
+com.fortify.WorkingDirectory property<br/><strong>User property is</strong>: <code>fortify.WorkingDirectory</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#logfile">logfile</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the log file that is produced by Fortify SCA.<br/><strong>Default value is</strong>: <code>sca-export-build-session.log</code>.<br/><strong>User property is</strong>: <code>fortify.sca.mbsLogfile</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#maxHeap">maxHeap</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the maximum heap size of JVM which runs SCA.<br/><strong>User property is</strong>: <code>fortify.sca.Xmx</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#quiet">quiet</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, SCA writes minimal messages to the console.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.sca.quiet</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#scaExportFailOnError">scaExportFailOnError</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, the build fails if errors occur during SCA mobile
+build session export.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.sca.exportBuildSession.failOnError</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#scaFailOnError">scaFailOnError</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, the build fails if errors occur during any SCA
+processing.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.sca.failOnError</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#scaProjectRoot">scaProjectRoot</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>18.20</code></td>
+            <td>Specifies the sourceanalyzer project root directory. Associated
+with com.fortify.sca.ProjectRoot SCA property<br/><strong>User property is</strong>: <code>fortify.sca.ProjectRoot</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#stackSize">stackSize</a></strong></td>
+            <td><code>String</code></td>
+            <td><code>-</code></td>
+            <td>Specifies the thread stack size of JVM which runs SCA.<br/><strong>User property is</strong>: <code>fortify.sca.Xss</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#verbose">verbose</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, SCA sends verbose status messages to the console.<br/><strong>Default value is</strong>: <code>false</code>.<br/><strong>User property is</strong>: <code>fortify.sca.verbose</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><a href="#version">version</a></strong></td>
+            <td><code>boolean</code></td>
+            <td><code>-</code></td>
+            <td>If set to true, SCA prints the version to the console.<br/><strong>Default value is</strong>: <code>true</code>.<br/><strong>User property is</strong>: <code>fortify.sca.version</code>.</td>
+          </tr>
+        </table>
+      </subsection>
+      <subsection name="Parameter Details">
+        <p><strong><a name="aggregate">aggregate</a>:</strong></p>
+        <div>If set to true, aggregate mode is enabled.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Since</strong>: <code>16.10</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.aggregate</code></li>
+          <li><strong>Default</strong>: <code>true</code></li>
+        </ul><hr/><p><strong><a name="buildId">buildId</a>:</strong></p>
+        <div>Specifies the SCA build ID. The default is project artifact ID and
+version. In aggregate mode, the top level project artifact ID and
+version is used for all modules.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.buildId</code></li>
+          <li><strong>Default</strong>: <code>${project.artifactId}-${project.version}</code></li>
+        </ul><hr/><p><strong><a name="buildSessionFile">buildSessionFile</a>:</strong></p>
+        <div>Location and name of the generated build session file.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.buildSessionFile</code></li>
+        </ul><hr/><p><strong><a name="debug">debug</a>:</strong></p>
+        <div>If set to true, SCA runs in debug mode. This can be useful for
+troubleshooting.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.debug</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="dontRunSCA">dontRunSCA</a>:</strong></p>
+        <div>If set to true, generates SCA commands to run, but does not
+actually run them.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.dontRunSCA</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="fortifyWorkingDirectory">fortifyWorkingDirectory</a>:</strong></p>
+        <div>Specifies the Fortify working directory. Associated with
+com.fortify.WorkingDirectory property</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Since</strong>: <code>18.20</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.WorkingDirectory</code></li>
+        </ul><hr/><p><strong><a name="logfile">logfile</a>:</strong></p>
+        <div>Specifies the log file that is produced by Fortify SCA.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.mbsLogfile</code></li>
+          <li><strong>Default</strong>: <code>sca-export-build-session.log</code></li>
+        </ul><hr/><p><strong><a name="maxHeap">maxHeap</a>:</strong></p>
+        <div>Specifies the maximum heap size of JVM which runs SCA.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.Xmx</code></li>
+        </ul><hr/><p><strong><a name="quiet">quiet</a>:</strong></p>
+        <div>If set to true, SCA writes minimal messages to the console.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.quiet</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="scaExportFailOnError">scaExportFailOnError</a>:</strong></p>
+        <div>If set to true, the build fails if errors occur during SCA mobile
+build session export.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.exportBuildSession.failOnError</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="scaFailOnError">scaFailOnError</a>:</strong></p>
+        <div>If set to true, the build fails if errors occur during any SCA
+processing.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.failOnError</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="scaProjectRoot">scaProjectRoot</a>:</strong></p>
+        <div>Specifies the sourceanalyzer project root directory. Associated
+with com.fortify.sca.ProjectRoot SCA property</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Since</strong>: <code>18.20</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.ProjectRoot</code></li>
+        </ul><hr/><p><strong><a name="sourceanalyzer">sourceanalyzer</a>:</strong></p>
+        <div>Location of the sourceanalyzer executable. Defaults to
+sourceanalyzer which runs the version on the PATH or fails if none
+exists.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>Yes</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.sourceanalyzer.executable</code></li>
+          <li><strong>Default</strong>: <code>sourceanalyzer</code></li>
+        </ul><hr/><p><strong><a name="stackSize">stackSize</a>:</strong></p>
+        <div>Specifies the thread stack size of JVM which runs SCA.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>java.lang.String</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.Xss</code></li>
+        </ul><hr/><p><strong><a name="verbose">verbose</a>:</strong></p>
+        <div>If set to true, SCA sends verbose status messages to the console.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.verbose</code></li>
+          <li><strong>Default</strong>: <code>false</code></li>
+        </ul><hr/><p><strong><a name="version">version</a>:</strong></p>
+        <div>If set to true, SCA prints the version to the console.</div>
+        <ul>
+          <li><strong>Type</strong>: <code>boolean</code></li>
+          <li><strong>Required</strong>: <code>No</code></li>
+          <li><strong>User Property</strong>: <code>fortify.sca.version</code></li>
+          <li><strong>Default</strong>: <code>true</code></li>
+        </ul>
+      </subsection>
+    </section>
+  </body>
+</document>
